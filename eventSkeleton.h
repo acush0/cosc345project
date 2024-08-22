@@ -1,9 +1,13 @@
-#pragma once
-
 #include <string>
+#pragma once
 using namespace std;
 
 class eventSkeleton{
+private:
+    string paperCode;
+    int day;
+    int week;
+
 public:
     // Constructor
     eventSkeleton(string paperCode,  int day, int week);
@@ -17,9 +21,4 @@ public:
     void setPaperCode(string& paperCode);
     void setDay(int day);
     void setWeek(int week);
-
-private:
-    string paperCode;
-    int day;
-    int week;
 };

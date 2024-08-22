@@ -1,17 +1,6 @@
 #include "eventSkeleton.h"
-using namespace std;
 #include <string>
-
-/**
-eventSkeleton is the parent class
-lecture, tutorial, lab, assignment, exam, study session should have their own properties
-addNewEvent asks user for input
-create the object
-put into a vector <eventSkeleton> events
-also push onto the paper object
-
-events is used in calendar
- */
+using namespace std;
 
 // constructor
 eventSkeleton::eventSkeleton(string paperCode, int day, int week)
@@ -31,7 +20,6 @@ int eventSkeleton::getWeek(){
 }
 
 // setter methods
-
 void eventSkeleton::setPaperCode(string& paperCode){
     this->paperCode = paperCode;
 }

@@ -6,6 +6,8 @@
 #include "AddEvent.h"
 #include "paper.h"
 #include "addPaper.h"
+#include "eventSkeleton.h"
+#include "addNewEvent.h"
 #include <limits>
 using namespace std;
 // g++ -o menu menu.cpp
@@ -60,6 +62,9 @@ void displayMenu()
                 }
                 case 3: {
                     // add event
+                    addNewEvent eventHandler(papers);
+                    eventHandler.addNewEventMenu();
+
                     //AddEvent eventHandler; // Create an instance of AddEvent
                     //calendar.addEvent(eventHandler.AddEventMenu());
                     break;
@@ -70,6 +75,7 @@ void displayMenu()
                 }
                 case 5: {
                     paperHandler.addPaperMenu();
+
                     break;
                 }
                 case 6: {
@@ -79,8 +85,8 @@ void displayMenu()
                 }
                 default: {
                     cout << "Invalid input. Please enter an integer." << endl;
-                    cin.clear();                                                   // Clear error flags
-                    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Discard invalid input
+                   // cin.clear();                                                   // Clear error flags
+                    //cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Discard invalid input
                 }
             }
         }
