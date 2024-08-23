@@ -37,5 +37,5 @@ public:
     // void setWeek(int week);
 
     // displays lecture information
-    void displayInfo() override;
+    void displayInfo();
 };

@@ -28,5 +28,5 @@ public:
     void setLocation( string& location);
 
     // displays lab information
-    void displayInfo() override;
+    void displayInfo();
 };

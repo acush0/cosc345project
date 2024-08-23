@@ -22,5 +22,5 @@ public:
     void setDay(int day);
     void setWeek(int week);
     
-    virtual void displayInfo();
+    void displayInfo();
 };
