@@ -26,6 +26,7 @@ addNewEvent::addNewEvent(vector<paper>& papers) : papers(papers) {}
 
 void addNewEvent::addNewEventMenu() {
     EventType eventType;
+    eventType = EventType::LECTURE;
     string paperCode, location;
     int startTime, endTime, day, week, typeChoice;
 
@@ -61,6 +62,8 @@ void addNewEvent::addNewEventMenu() {
         default:
             cout << "bad input";
     }
+
+    
 
     //depending on type/enum, ask for properties tied to specific event e.g. lecture has different properties to assignment
     cout << "Enter start time: ";
