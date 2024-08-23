@@ -6,6 +6,8 @@
 #include "addNewEvent.h"
 #include "tutorial.h"
 #include "lab.h"
+#include "assignment.h"
+#include "exam.h"
 #include "lecture.h"
 #include "Calendar.h"
 #include "eventSkeleton.h"
@@ -16,21 +18,16 @@ vector<eventSkeleton> events;
 
 // need input validation
 
-enum class EventType {
-    TUTORIAL,
-    LAB,
-    LECTURE,
-    // ASSIGNMENT,
-    // EXAM,
-};
+//enum lecture, tutorial, lab, assignment, exam
+
 
 // Constructor to initialize papers
 addNewEvent::addNewEvent(vector<paper>& papers) : papers(papers) {}
 
 void addNewEvent::addNewEventMenu() {
-    string paperCode, eventType, location;
-    int startTime, endTime, day, week;
-    // any more variables for exams/assignments
+    EventType eventType;
+    string paperCode, location;
+    int startTime, endTime, day, week, typeChoice;
 
 
     cout << "Choose paper code:\n";
@@ -42,9 +39,28 @@ void addNewEvent::addNewEventMenu() {
     }
     cin >> paperCode;
 
-    cout << "Choose type: (tutorial, lab, lecture)\n";
-    // implement enum
-    cin >> eventType;
+    cout << "Choose the type of event to add:\n1. Lecture\n2. Tutorial\n3. Lab\n4. Assignment\n5. Exam\n";
+    cin >> typeChoice;
+    // need to add input validation if they put outside of input range
+    switch(typeChoice) {
+        case 1:
+            eventType = EventType::LECTURE;
+            break;
+        case 2:
+            eventType = EventType::TUTORIAL;
+            break;
+        case 3:
+            eventType = EventType::LAB;
+            break;
+        case 4:
+            eventType = EventType::ASSIGNMENT;
+            break;
+        case 5:
+            eventType = EventType::EXAM;
+            break;
+        default:
+            cout << "bad input";
+    }
 
     //depending on type/enum, ask for properties tied to specific event e.g. lecture has different properties to assignment
     cout << "Enter start time: ";
@@ -62,18 +78,30 @@ void addNewEvent::addNewEventMenu() {
     cout << "Enter week: ";
     cin >> week;
 
-    // create object based on enum then push to events AND also the paper 
-
     //pseudo
-    // if eventType == tutorial 
-    Tutorial newTutorial = Tutorial(eventType, paperCode, startTime, endTime, location, day, week);
-    // else if eventType == lab
-    //lab newLab = lab(eventType, paperCode, startTime, endTime, location, day, week);
-    // else if eventType == lecture
-    //lecture newLecture = lecture(eventType, paperCode, startTime, endTime, location, day, week);
-
-    // just has as default before enum is implemented
-    events.push_back(newTutorial);
+    if(eventType == EventType::TUTORIAL){
+        Tutorial newTutorial = Tutorial(paperCode, day, week, startTime, endTime, location);
+        events.push_back(newTutorial);
+    }
+    else if(eventType == EventType::LAB){
+        Lab newLab = Lab(paperCode, day, week, startTime, endTime, location);
+        events.push_back(newLab);
+    }
+    else if(eventType == EventType::LECTURE){
+        Lecture newLecture = Lecture(paperCode, day, week, startTime, endTime, location);
+        events.push_back(newLecture);
+    }
+    else if(eventType == EventType::ASSIGNMENT){
+        Assignment newAssignment = Assignment(paperCode, day, week, startTime, endTime, location);
+        events.push_back(newAssignment);
+    }
+    else if(eventType == EventType::EXAM){
+        Exam newExam = Exam(paperCode, day, week, startTime, endTime, location);
+        events.push_back(newExam);
+    }
+    else{
+        cout << "Invalid event type.";
+    }
     }
 
 

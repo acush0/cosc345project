@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Calendar.h"
 #include "Event.h"
+#include "eventSkeleton.h"
 
 using namespace std;
 

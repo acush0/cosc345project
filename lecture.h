@@ -4,38 +4,11 @@
 
 using namespace std;
 
-class Lecture : public eventSkeleton{
-private:
-    string eventType;
-    // string paperCode;
-    int startTime;
-    int endTime;
-    string location;
-    // int day;
-    // int week;
-
+class Lecture : public eventSkeleton {
 public:
-    // constructor
-    Lecture(string eventType, string paperCode, int startTime, int endTime, string location, int day, int week);
+    // Constructor
+    Lecture(string paperCode, int day, int week, int startTime, int endTime, string location)
+        : eventSkeleton(EventType::LECTURE, paperCode, day, week, startTime, endTime, location) {}
 
-    // getter methods
-    string getEventType();
-    //string getPaperCode() ;
-    int getStartTime() ;
-    int getEndTime() ;
-    string getLocation() ;
-    // int getDay() ;
-    // int getWeek() ;
 
-    // setter methods
-    void setEventType(string& eventType);
-    //void setPaperCode( string& paperCode); 
-    void setStartTime(int startTime);
-    void setEndTime(int endTime);
-    void setLocation( string& location);
-    // void setDay(int day);
-    // void setWeek(int week);
-
-    // displays lecture information
-    void displayInfo();
 };
