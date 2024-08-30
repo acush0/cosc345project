@@ -52,3 +52,15 @@ jobs:
         files: coverage.xml
         token: ${{ secrets.CODECOV_TOKEN }}
 
+    - name: Install CPPCheck
+      run: choco install cppcheck
+
+    - name: Run CPPCheck
+      run: cppcheck --enable=all --inconclusive --std=c++17 --xml --xml-version=2 . 2> cppcheck.xml
+
+    - name: Upload CPPCheck Results
+      uses: actions/upload-artifact@v3
+      with:
+        name: cppcheck-report
+        path: cppcheck.xml
+
