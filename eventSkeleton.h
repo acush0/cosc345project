@@ -9,7 +9,8 @@
 /**
  * @brief Enumeration of event types
  */
-enum class EventType {
+enum class EventType
+{
     LECTURE,
     TUTORIAL,
     LAB,
@@ -29,7 +30,6 @@ private:
     EventType eventType;
 
 public:
-
     /**
      * @brief Constructor for eventSkeleton
      * @param eventType The type of the event
@@ -40,7 +40,7 @@ public:
      * @param endTime The end time of the event
      * @param location The location of the event
      */
-    eventSkeleton(EventType eventType, std::string paperCode,  int day, int week, int startTime, int endTime, std::string location);
+    eventSkeleton(EventType eventType, std::string paperCode, int day, int week, int startTime, int endTime, std::string location);
 
     /**
      * @brief Get the event type
@@ -71,19 +71,19 @@ public:
      * @brief Get the week of the event
      * @return The week of the event
      */
-    int getWeek();
+    int getWeek() const; // Add const qualifier here
 
     /**
      * @brief Get the start time of the event
      * @return The start time of the event
      */
-    int getStartTime();
+    int getStartTime() const;
 
     /**
      * @brief Get the end time of the event
      * @return The end time of the event
      */
-    int getEndTime();
+    int getEndTime() const;
 
     /**
      * @brief Get the location of the event
@@ -101,7 +101,7 @@ public:
      * @brief Set the paper code
      * @param paperCode The new paper code
      */
-    void setPaperCode(std::string& paperCode);
+    void setPaperCode(std::string &paperCode);
 
     /**
      * @brief Set the day of the event
@@ -131,8 +131,8 @@ public:
      * @brief Set the location of the event
      * @param location The new location
      */
-    void setLocation(std::string& location);
-    
+    void setLocation(std::string &location);
+
     /**
      * @brief Display information about the event
      */

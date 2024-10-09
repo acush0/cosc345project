@@ -19,7 +19,8 @@ class Calendar;
  * @class Day
  * @brief Represents a single day in a calendar, containing events, assignments, and exams.
  */
-class Day {
+class Day
+{
 public:
     vector<eventSkeleton> events;
     vector<Assignment> assignments;
@@ -37,7 +38,7 @@ public:
      * @param e The event to add
      * @return true if the event was added successfully, false otherwise
      */
-    bool addEvent(eventSkeleton& e);
+    bool addEvent(eventSkeleton &e);
 
 private:
     /**
@@ -45,17 +46,15 @@ private:
      * @param d The event to add
      * @return true if the event was added successfully, false otherwise
      */
-    bool addEventToCalendar(eventSkeleton& d);
-
+    bool addEventToCalendar(eventSkeleton &d);
 };
-
- 
 
 /**
  * @class Week
  * @brief Represents a week in a calendar, containing multiple days.
  */
-class Week {
+class Week
+{
 public:
     std::vector<Day> days;
     int weekNumber;
@@ -71,15 +70,15 @@ public:
      * @param e The event to add
      * @return true if the event was added successfully, false otherwise
      */
-    bool addEvent(eventSkeleton& e);
-
+    bool addEvent(eventSkeleton &e);
 };
 
 /**
  * @class Calendar
  * @brief Represents a calendar, containing multiple weeks.
  */
-class Calendar {
+class Calendar
+{
 private:
     std::vector<Week> weeks;
     vector<paper> papers;
@@ -100,21 +99,21 @@ public:
      * @param e The event to add
      * @return true if the event was added successfully, false otherwise
      */
-    bool addEvent(eventSkeleton& e);
+    bool addEvent(eventSkeleton &e);
 
     /**
      * @brief Remove an event from the calendar
      * @param e The event to remove
      * @return true if the event was removed successfully, false otherwise
      */
-    bool removeEvent(eventSkeleton& e);
+    bool removeEvent(eventSkeleton &e);
 
     /**
      * @brief Edits an existing event in the calendar.
      * @param e The event to be edited.
      * @return true if the event was successfully edited, false otherwise.
      */
-    bool editEvent(eventSkeleton& e);
+    bool editEvent(eventSkeleton &e);
 
     /**
      * @brief Displays a specific week of the calendar.
@@ -132,7 +131,7 @@ public:
      * @brief Returns all papers for the calendar
      * @return All papers for the calendar
      */
-    vector<paper>& getPapers();
+    vector<paper> &getPapers();
 
     /**
      * @brief Serialises the calendar to a file
@@ -158,5 +157,5 @@ public:
      * @param background Whether the color is for background or foreground.
      * @return A string representing the color code.
      */
-    std::string getColour(string colour,bool background);
+    std::string getColour(string colour, bool background);
 };

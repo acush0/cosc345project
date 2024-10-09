@@ -44,6 +44,7 @@ void addPaperMenuItem();
 void viewCalendarMenuItem();
 void saveToFileMenu();
 void loadFromFileMenu();
+void calculateTotalStudyHoursMenuItem();
 
 vector<MenuItem> menuItems = {
     // Add a MenuItem() here, linking to a pointer to the function that manages the item.
@@ -57,6 +58,7 @@ vector<MenuItem> menuItems = {
     MenuItem("End study session", endStudySession),
     MenuItem("Save calendar to file", saveToFileMenu),
     MenuItem("Load calendar from file", loadFromFileMenu),
+    MenuItem("Calculate Total Study Hours", calculateTotalStudyHoursMenuItem),
     MenuItem("Exit", exitMenu)};
 void displayMenuOptions()
 {
@@ -317,4 +319,59 @@ void loadFromFileMenu()
 {
     CalendarFile::loadFromFile(*calendar, "calendar.txt");
     cout << "\nEnter 1 to go back to the main menu" << endl;
+}
+
+void calculateTotalStudyHoursMenuItem()
+{
+    clearScreen();
+    std::cout << "\n"
+              << "  _____             _        _____ _                _           _ \n"
+              << " / ____|           | |      / ____| |              | |         | |\n"
+              << "| |     ___  _ __  | |_ ___| |    | |__   ___  __ _| | ___  ___| |\n"
+              << "| |    / _ \\| '__| | __/ _ \\ |    | '_ \\ / _ \\/ _` | |/ _ \\/ __| |\n"
+              << "| |___| (_) | |    | ||  __/ |____| | | |  __/ (_| | |  __/ (__|_|\n"
+              << " \\_____\\___/|_|     \\__\\___|\\_____|_| |_|\\___|\\__,_|_|\\___|\\___(_)\n"
+              << "\n";
+
+    if (calendar->getPapers().empty())
+    {
+        std::cout << "No papers available. Please add a paper first.\n";
+        std::string choicePrompt = "Please enter 1 to go back to the main menu or 2 to exit the program.";
+        int choice = validate.getValidInteger(1, 2, choicePrompt);
+        if (choice == 1)
+        {
+            displayMenuOptions();
+        }
+        return;
+    }
+
+    // Display available papers
+    std::cout << "Available Papers:\n";
+    for (size_t i = 0; i < calendar->getPapers().size(); ++i)
+    {
+        std::cout << i + 1 << ". " << calendar->getPapers()[i].getPaperName()
+                  << " (" << calendar->getPapers()[i].getPaperCode() << ")\n";
+    }
+
+    // Prompt user to select a paper
+    string paperPrompt = "Select a paper by number: ";
+    int paperChoice = validate.getValidInteger(1, calendar->getPapers().size(), paperPrompt);
+    paper selectedPaper = calendar->getPapers()[paperChoice - 1];
+
+    // Prompt user to enter the week number
+    string weekPrompt = "Enter the week number (1-52) to calculate total study hours: ";
+    int weekNumber = validate.getValidInteger(1, 52, weekPrompt);
+
+    // Calculate total study hours
+    double totalHours = selectedPaper.getTotalStudyHours(weekNumber);
+
+    // Display the result
+    std::cout << "\nTotal study hours for " << selectedPaper.getPaperName()
+              << " in week " << weekNumber << ": " << totalHours << " hours.\n";
+
+    int backChoice = validate.getValidInteger(1, 1, "Please enter 1 to go back to the main menu.");
+    if (backChoice == 1)
+    {
+        displayMenuOptions();
+    }
 }
