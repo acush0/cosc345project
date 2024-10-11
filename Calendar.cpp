@@ -402,7 +402,7 @@ void Calendar::deserialize(std::ifstream &inputFile)
             inputFile >> dayNumber;
             inputFile.ignore();
 
-            Day day(dayNumber);
+            Day dayObject(dayNumber);
 
             // Deserialize the events
             size_t numEvents; // Number of events in the day
@@ -487,7 +487,7 @@ void Calendar::deserialize(std::ifstream &inputFile)
                 this->addEvent(event);
             }
 
-            week.days.push_back(day); // Add the day to the current week
+            week.days.push_back(dayObject); // Add the day to the current week
         }
 
         weeks.push_back(week); // Add the week to the calendar
